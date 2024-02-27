@@ -15,6 +15,8 @@ class TeamGenerator {
       let team = {
         name: teamName,
         players: teamPlayers,
+        //Ajout d'un capitaine de façon aléatoire à l'équipe
+        captain: teamPlayers[Math.floor(Math.random() * teamPlayers.length)] 
       };
       this.teams.push(team);
       teamIndex++;
@@ -26,6 +28,4 @@ class TeamGenerator {
   }
 }
 
-export default  TeamGenerator
-// Exemple d'utilisation
-
+export default TeamGenerator;
