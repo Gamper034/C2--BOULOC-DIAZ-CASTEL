@@ -62,6 +62,20 @@ describe("TeamGenerator", () => {
       expect(teams).to.have.lengthOf(3);
     })
 
+
+    it("should have teams with even player levels", async () => {
+      const playerLevels = [["Alice", 3], ["Bob", 2], ["Charlie", 1], ["David", 4], ["Eve", 4], ["Frank", 3], ["Grace", 2], ["Hugo", 1], ["Ivy", 4]];
+      const averagePlayerLevel = playerLevels.reduce((acc, player) => acc + player[1], 0) / playerLevels.length;
+      const teamGenerator = new TeamGenerator(["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Hugo", "Ivy"]);
+      teamGenerator.setPlayerLevels(playerLevels);
+      teamGenerator.generateTeams();
+      const teams = teamGenerator.getTeams();
+      //For each team, the average level should be the same of averagePlayerLevel + - 1.5 as max level is 5 and min level is 0
+      teams.forEach((team) => {
+        expect(team.averageLevel).to.be.closeTo(averagePlayerLevel, 1.5);
+      });
+    });
+
 	});
 
 	describe("Given we generate teams from CSV file", () => {
@@ -101,19 +115,6 @@ describe("TeamGenerator", () => {
       );
       teams.forEach((team) => {
         expect(team.players).to.include(team.captain);
-      });
-    });
-
-    it("should have teams with even player levels", async () => {
-      const playerLevels = [["Alice", 3], ["Bob", 2], ["Charlie", 1], ["David", 4], ["Eve", 4], ["Frank", 3], ["Grace", 2], ["Hugo", 1], ["Ivy", 4]];
-      const averagePlayerLevel = playerLevels.reduce((acc, player) => acc + player[1], 0) / playerLevels.length;
-      const teamGenerator = new TeamGenerator(["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Hugo", "Ivy"]);
-      teamGenerator.setPlayerLevels(playerLevels);
-      teamGenerator.generateTeams();
-      const teams = teamGenerator.getTeams();
-      //For each team, the average level should be the same of averagePlayerLevel + - 1.5 as max level is 5 and min level is 0
-      teams.forEach((team) => {
-        expect(team.averageLevel).to.be.closeTo(averagePlayerLevel, 1.5);
       });
     });
 
