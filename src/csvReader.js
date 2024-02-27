@@ -13,7 +13,6 @@ export class CSVReader {
         .pipe(csv())
         .on('data', (row) => this.data.push(row))
         .on('end', () => {
-          console.log('CSV file successfully processed');
           resolve(this.data);
         })
         .on('error', (error) => reject(error));
