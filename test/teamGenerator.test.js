@@ -30,6 +30,15 @@ describe('TeamGenerator', () => {
           });
       });
 
-
+    describe("generateTeams from csv", () => {
+        it('should generate teams from a CSV file', async () => {
+            const teamGenerator = new TeamGenerator();
+            const teams = await teamGenerator.generateTeamsFromCSV('./test/assets/players.csv');
+            expect(teams).to.be.an('array');
+            expect(teams[0]).to.have.property('name');
+            expect(teams[0]).to.have.property('players');
+            expect(teams[0]).to.have.property('captain');
+        });
+    })
 
 })
