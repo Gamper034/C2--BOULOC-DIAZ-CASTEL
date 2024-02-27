@@ -4,7 +4,7 @@ import { expect } from "chai";
 import TeamGenerator from "../src/teamGenerator.js";
 
 describe("TeamGenerator", () => {
-	describe("generateTeams", () => {
+	describe("Given we generate teams", () => {
 		// Check if "captain" key if defined
 		it('should have a "captain" key', () => {
 			const teamGenerator = new TeamGenerator(["Alice", "Bob", "Charlie"]);
@@ -64,8 +64,8 @@ describe("TeamGenerator", () => {
 
 	});
 
-	describe("generateTeams from csv", () => {
-		it("should generate teams from a CSV file", async () => {
+	describe("Given we generate teams from CSV file", () => {
+		it("should generate teams", async () => {
 			const teamGenerator = new TeamGenerator();
 			const teams = await teamGenerator.generateTeamsFromCSV(
 				"./test/assets/players.csv"
