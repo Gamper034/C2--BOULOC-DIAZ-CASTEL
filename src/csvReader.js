@@ -1,7 +1,7 @@
 import fs from 'fs';
 import csv from 'csv-parser';
 
-class CSVReader {
+export class CSVReader {
   constructor(filePath) {
     this.filePath = filePath;
     this.data = [];
